@@ -2,12 +2,14 @@
 {
     public class Bubble
     {
-        public string Message { get; set; } = null!;
-        public DateTime RemoveAt { get; set; } = DateTime.Now.AddSeconds(20);
+        private static readonly Random rand = new Random();
 
-        public string InitialX { get; set; }
-        public string InitialY { get; set; }
-        public string FinalX { get; set; }
-        public string FinalY { get; set; }
+        public string Message { get; set; } = null!;
+        public string Colour { get; set; } = null!;
+        public DateTime RemoveAt { get; set; } = DateTime.Now.AddSeconds(20);
+        public int InitialX { get; set; } = rand.Next(1, 101);
+        public int InitialY { get; set; } = rand.Next(1, 101);
+        public int FinalX { get; set; } = rand.Next(1, 101);
+        public int FinalY { get; set; } = rand.Next(1, 101);
     }
 }

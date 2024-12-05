@@ -1,5 +1,7 @@
 
 using api_quick_bubble.Hubs;
+using Application.Services;
+using Application.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +13,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSignalR(hubOptions =>
 {
-    hubOptions.MaximumReceiveMessageSize = 10 * 1024 * 1024;
+    hubOptions.MaximumReceiveMessageSize = 10 * 1024 * 1024 * 10;
 });
+
+builder.Services.AddTransient<IImageCompressor, ImageCompressor>();
 
 var app = builder.Build();
 

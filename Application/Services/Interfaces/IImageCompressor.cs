@@ -8,6 +8,6 @@ namespace Application.Services.Interfaces
 {
     public interface IImageCompressor
     {
-        string CompressImage(string base64Image, long quality);
+        string CompressImage(string base64Image, int quality);
     }
 }

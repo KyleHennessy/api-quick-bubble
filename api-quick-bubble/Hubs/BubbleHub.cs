@@ -16,7 +16,7 @@ namespace api_quick_bubble.Hubs
         {
             if (bubble.Background != null)
             {
-                bubble.Background = _imageCompressor.CompressImage(bubble.Background, 20L);
+                bubble.Background = _imageCompressor.CompressImage(bubble.Background, 20);
             }
 
             await Clients.Others.SendAsync("ReceiveMessage", bubble);

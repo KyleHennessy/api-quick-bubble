@@ -34,7 +34,6 @@ namespace api_quick_bubble.Controllers
                 }
 
                 await _hubContext.Clients.AllExcept(connectionId).SendAsync("ReceiveMessage", bubble);
-                _logger.LogError("Test error");
             }
             catch (Exception ex)
             {

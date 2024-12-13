@@ -25,6 +25,7 @@ builder.Services.AddSignalR(hubOptions =>
 {
     hubOptions.MaximumReceiveMessageSize = 10 * 1024 * 1024 * 10;
 });
+builder.Services.AddApplicationInsightsTelemetry(); ;
 
 builder.Services.AddTransient<IImageCompressor, ImageCompressor>();
 

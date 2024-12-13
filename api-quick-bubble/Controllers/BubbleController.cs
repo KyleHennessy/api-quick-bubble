@@ -14,22 +14,32 @@ namespace api_quick_bubble.Controllers
         private readonly IHubContext<BubbleHub> _hubContext;
 
         private readonly IImageCompressor _imageCompressor;
+        private readonly ILogger<BubbleController> _logger;
 
-        public BubbleController(IHubContext<BubbleHub> hubContext, IImageCompressor imageCompressor)
+        public BubbleController(IHubContext<BubbleHub> hubContext, IImageCompressor imageCompressor, ILogger<BubbleController> logger)
         {
             _hubContext = hubContext;
             _imageCompressor = imageCompressor;
+            _logger = logger;
         }
 
         [HttpPost("send/{connectionId}")]
         public async Task SendBubble(string connectionId, [FromBody] Bubble bubble)
         {
-            if (bubble.Background != null)
+            try
             {
-                bubble.Background = _imageCompressor.CompressImage(bubble.Background, 20);
-            }
+                if (bubble.Background != null)
+                {
+                    bubble.Background = _imageCompressor.CompressImage(bubble.Background, 20);
+                }
 
-            await _hubContext.Clients.AllExcept(connectionId).SendAsync("ReceiveMessage", bubble);
+                await _hubContext.Clients.AllExcept(connectionId).SendAsync("ReceiveMessage", bubble);
+                _logger.LogError("Test error");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"An error has occurred: {ex.Message}");
+            }
         }
     }
 }

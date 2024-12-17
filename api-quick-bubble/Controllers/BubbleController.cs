@@ -24,7 +24,7 @@ namespace api_quick_bubble.Controllers
         }
 
         [HttpPost("send/{connectionId}")]
-        public async Task SendBubble(string connectionId, [FromBody] Bubble bubble)
+        public async Task<ActionResult<Bubble>> SendBubble(string connectionId, [FromBody] Bubble bubble)
         {
             try
             {
@@ -34,10 +34,13 @@ namespace api_quick_bubble.Controllers
                 }
 
                 await _hubContext.Clients.AllExcept(connectionId).SendAsync("ReceiveBubble", bubble);
+
+                return Ok(bubble);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"An error has occurred: {ex.Message}");
+                return BadRequest();
             }
         }
     }

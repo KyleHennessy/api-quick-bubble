@@ -28,7 +28,11 @@ builder.Services.AddSignalR(hubOptions =>
 });
 builder.Services.AddApplicationInsightsTelemetry(); ;
 
+
+#region Services
 builder.Services.AddTransient<IImageCompressor, ImageCompressor>();
+builder.Services.AddSingleton<IConnectionCounter, ConnectionCounter>();
+#endregion
 
 var app = builder.Build();
 

@@ -33,7 +33,7 @@ namespace api_quick_bubble.Controllers
                     bubble.Background = _imageCompressor.CompressImage(bubble.Background, 20);
                 }
 
-                await _hubContext.Clients.AllExcept(connectionId).SendAsync("ReceiveBubble", bubble);
+                await _hubContext.Clients.AllExcept(connectionId).SendAsync("NewBubble", bubble);
 
                 return Ok(bubble);
             }

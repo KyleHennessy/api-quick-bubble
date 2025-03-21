@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Application.Attributes;
+using System.ComponentModel.DataAnnotations;
 
 namespace Domain
 {
@@ -7,6 +8,7 @@ namespace Domain
         public Guid Id { get; set; } = Guid.NewGuid();
 
         [MaxLength(250, ErrorMessage = "Messages can be no more than 250 characters long")]
+        [Profanity]
         public required string Message { get; set; } = null!;
 
         [RegularExpression("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$", ErrorMessage = "This is not a valid hexadecimal colour code")]

@@ -14,7 +14,7 @@ namespace Application.Attributes
                 return ValidationResult.Success;
             }
 
-            if (_filter.ContainsProfanity(str))
+            if (_filter.ContainsProfanity(str.ToLower()))
             {
                 return new ValidationResult("Watch yo profanity");
             }

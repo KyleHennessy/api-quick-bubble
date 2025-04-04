@@ -14,6 +14,7 @@ namespace Domain
         [RegularExpression("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$", ErrorMessage = "This is not a valid hexadecimal colour code")]
         public required string Colour { get; set; } = null!;
 
+        [FileValidation]
         public string? Background { get; set; }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using Application.Services.Interfaces;
 using SkiaSharp;
-using System.Drawing;
-using System.Drawing.Imaging;
 
 namespace Application.Services
 {

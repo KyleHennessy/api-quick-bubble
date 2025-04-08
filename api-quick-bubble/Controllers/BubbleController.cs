@@ -1,7 +1,6 @@
 ﻿using api_quick_bubble.Hubs;
 using Application.Services.Interfaces;
 using Domain;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 

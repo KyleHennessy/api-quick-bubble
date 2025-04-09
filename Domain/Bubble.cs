@@ -20,19 +20,22 @@ namespace Domain
                 filter.RemoveProfanity("hell");
                 filter.RemoveProfanity("bloody hell");
 
-                _message = filter.CensorString(value);
-                if (filter.ContainsProfanity(_message))
+                var words = value.Split(" ");
+
+                for(int i = 0; i < words.Length; i++)
                 {
-                    var sb = new StringBuilder(_message);
-                    for(int i = 0; i < sb.Length; i++)
+                    if (filter.ContainsProfanity(words[i]) && !words[i].Contains("ship"))
                     {
-                        if (sb[i] != ' ')
+                        var sb = new StringBuilder(words[i]);
+                        for (int j = 0; j < sb.Length; j++)
                         {
-                            sb[i] = '*';
+                            sb[j] = '*';
                         }
+                        words[i] = sb.ToString();
                     }
-                    _message = sb.ToString();
                 }
+
+                _message = string.Join(" ", words);
             }
         }
 

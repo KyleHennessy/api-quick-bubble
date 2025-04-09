@@ -20,7 +20,7 @@ namespace Domain
                 filter.RemoveProfanity("hell");
                 filter.RemoveProfanity("bloody hell");
 
-                var words = value.Split(" ");
+                var words = (value ?? "").Split(" ");
 
                 for(int i = 0; i < words.Length; i++)
                 {

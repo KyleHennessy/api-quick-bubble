@@ -6,9 +6,10 @@ namespace Domain
 {
     public class Bubble
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Guid Id { get; private set; } = Guid.NewGuid();
 
         [MaxLength(250, ErrorMessage = "Messages can be no more than 250 characters long")]
+        [Required]
         [Profanity]
         public required string Message
         {
@@ -38,6 +39,7 @@ namespace Domain
         private string _message = string.Empty;
 
         [RegularExpression("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$", ErrorMessage = "This is not a valid hexadecimal colour code")]
+        [Required]
         public required string Colour { get; set; } = null!;
 
         [FileValidation]
